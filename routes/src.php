@@ -6,14 +6,6 @@
     $index_url = '../views/index.php';
     $addUser_url = '../views/addUser.php';
 
-    // $_SESSION['first_name'] = '';
-    // $_SESSION['last_name'] = '';
-    // $_SESSION['gender'] = '';
-    // $_SESSION['country'] = '';
-    // $_SESSION['dob'] = '';
-    // $_SESSION['id'] = 0;
-    // $_SESSION['update'] = false;
-
     if(isset($_POST['save'])) {
 
         $first_name = $_POST['first_name'];
@@ -76,10 +68,24 @@
         $mysqli->query("UPDATE users SET first_name='$first_name', last_name='$last_name', 
                         gender='$gender', country='$country', dob='$dob' WHERE id='$id' ")
                         or die($mysqli->error);
-        
+
         $_SESSION['message'] = 'Record has been update.';
         $_SESSION['msg_type'] = 'warning';
 
         header("location: $index_url ");
     }
+
+    if(isset($_POST['bulk_delete'])){
+
+        if(isset($_POST['delete'])){
+          foreach($_POST['delete'] as $id){
+            $mysqli->query("DELETE FROM users where id = $id") or die($mysqli->error);
+          }
+        }
+
+        $_SESSION['message'] = 'Bulk Record has been deleted';
+        $_SESSION['msg_type'] = 'danger';
+
+        header("Refresh:2; location: $index_url ");
+      }
 ?>

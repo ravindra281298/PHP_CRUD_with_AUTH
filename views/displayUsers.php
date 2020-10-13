@@ -52,6 +52,7 @@
     </div>
     <table class="table ">
         <thead>
+            <th></th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Gender</th>
@@ -62,6 +63,7 @@
         <?php
             while($row = $users->fetch_assoc()): ?>
             <tr>
+                <td><input type="checkbox" name='delete[]' value='<?= $row['id']?>'></td>
                 <td><?php echo $row['first_name']; ?></td>
                 <td><?php echo $row['last_name']; ?></td>
                 <td><?php echo $row['gender']; ?></td>

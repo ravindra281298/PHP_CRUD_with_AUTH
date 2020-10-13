@@ -27,12 +27,13 @@
         <div class="container center">
         <form  class="form-group" action="" method="post">
             <a class="btn btn-success" href="./addUser.php">+ Add Person</a>
-            <button class="btn btn-default "> Reload</button>
-            <button class="btn btn-danger">Bulk Delete</button>
-        </form>
+            <button class="btn btn-info " onClick="window.location.reload();">&#x21bb;  Reload</button>
+            <button class="btn btn-danger" type="submit" value="delete" name="bulk_delete">Bulk Delete</button>
+        <!-- </form> -->
         </div>
         <div class="container">
             <?php require_once './displayUsers.php'; ?>
         </div>
+        </form>
     </body>
 </html>
