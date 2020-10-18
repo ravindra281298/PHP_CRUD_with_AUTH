@@ -3,33 +3,25 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>User List</title>
+        <title>Bulk Insert</title>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </head>
+    <body>
+        <?php
+            require_once '../routes/src.php';
+        ?>
 
-    <?php
-        if(@isset($_GET['msg']) == true): ?>
-        <div class="alert alert-success"><?php echo $_GET['msg']; ?></div>
-    <?php endif ?>
-    <body class="bg-info">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 m-auto">
-                    <div class="card bg-dark mt-5">
-                        <div class="card-title bg-primary text-white mt-5">
-                            <h3 class="text-center py-3">Welcome to Assignment</h3>
-                        </div>
-                        <div class="card-body">
-                            <a href="./views/login.php" class="btn btn-success form-control center py-2 mb-3">Login</a>
-                            <a href="./views/signup.php" class="btn btn-success form-control py-2 mb-3">Sign Up</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="container center">
+            <form class="form-group" action="" method="post">
+                <label class="form-control">Upload CSV</label>
+                <input class="form-control" type="file" name="file">
+                <!-- <button class=" form-control btn btn-success" name="bulk_insert" type="submit">Submit</button> -->
+                <input type="submit" class=" form-control btn btn-primary" name="bulk_insert" value="IMPORT">
+            </form>
         </div>
     </body>
 </html>
