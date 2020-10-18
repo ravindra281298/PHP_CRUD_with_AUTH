@@ -88,40 +88,5 @@
 
         header("Refresh:2; location: $index_url ");
       }
-
-      if(isset($_POST["bulk_insert"])) {
-          $_SESSION['message'] = 'Something went wrong';
-          $_SESSION['msg_type'] = "danger";
-
-          $csvMimes = array('text/x-comma-separated-values', 'text/comma-separated-values', 'application/octet-stream',
-                            'application/vnd.ms-excel', 'application/x-csv', 'text/x-csv', 'text/csv', 'application/csv',
-                             'application/excel', 'application/vnd.msexcel', 'text/plain');
-
-          if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'], $csvMimes)){
-            //   $fileName = explode('.',$_FILES['file']['name']);
-                $_SESSION['message'] ='here';
-              if(is_uploaded_file($_FILES['file']['tmp_name'])) {
-
-                  $result = fopen($_FILES['file']['tmp_name'], 'r');
-
-                  while($data = fgetcsv($result) != FALSE) {
-
-                      $first_name = $data[0];
-                      $last_name = $data[1];
-                      $gender = $data[2];
-                      $country = $data[3];
-                      $dob = $data[4];
-
-                      $mysqli->query("INSERT INTO users (first_name, last_name, gender, country, dob)
-                        VALUES('$first_name','$last_name','$gender','$country','$dob')")
-                        or die($mysqli->error);
-                  }
-                  fclose($result);
-
-                  $_SESSION['message'] = 'Record has been saved';
-                  $_SESSION['msg_type'] = "success";
-              }
-          }
-          header("location: $index_url ");
-      }
+      
 ?>

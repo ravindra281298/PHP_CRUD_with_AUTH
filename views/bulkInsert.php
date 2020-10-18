@@ -12,11 +12,11 @@
     </head>
     <body>
         <?php
-            require_once '../routes/src.php';
+            require_once '../routes/bulkInsert.php';
         ?>
 
         <div class="container center">
-            <form class="form-group" action="" method="post">
+            <form class="form-group" action="" method="post" enctype="multipart/form-data">
                 <label class="form-control">Upload CSV</label>
                 <input class="form-control" type="file" name="file">
                 <!-- <button class=" form-control btn btn-success" name="bulk_insert" type="submit">Submit</button> -->

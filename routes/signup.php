@@ -18,7 +18,7 @@
 
         else if($result->num_rows == 0) {
             $mysqli->query("INSERT INTO admin (email, password) VALUES ('$email', '$password') ") or die($mysqli->error);
-            header("location:signup.php?msg= Your have successfully registered");
+            header("location: ../index.php?msg= Your have successfully registered");
         }
 
     }
