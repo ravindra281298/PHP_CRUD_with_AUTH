@@ -23,7 +23,6 @@ Log out </br>
    column1:- name: id,    type: int(11), AUTO_INCREMENT</br>
    column2:- name: email, type: varchar(25),</br>
    column3:- name: password, type: varchar(25)</br>
-   </br>
    <b>Table 2:</b></br>
    table name: users</br>
    No of coulmns: 2</br>
@@ -34,7 +33,7 @@ Log out </br>
    column5:- name: country, type: varchar(25)</br>
    column6:- name: dob, type: date</br>
 
-<h3>Running the project </h3></br>
+<h3>Running the project </h3>
 The easiest way to run the project is:</br>
 1. Get this repository to your local system</br>
 2. Goto the php installed files location and find htdocs</br>
