@@ -14,6 +14,7 @@
         <?php
             require_once '../routes/src.php';
             require_once '../db/users.php';
+            require_once '../routes/bulkDelete.php';
         ?>
         <?php
             if(!isset($_SESSION['email'])) {
@@ -43,7 +44,8 @@
         <div class="container center ">
         <form  class="form-group" action="" method="post">
             <a class="btn btn-success" href="./addUser.php">+ Add Person</a>
-            <button class="btn btn-info " onClick="window.location.reload();">&#x21bb;  Reload</button>
+            <!-- <button class="btn btn-info " onClick="window.location.reload();">&#x21bb;  Reload</button> -->
+            <a class="btn btn-info" href="./index.php">&#x21bb;  Reload</a>
             <button class="btn btn-danger" type="submit" value="delete" name="bulk_delete">Bulk Delete</button>
             <a class="btn btn-warning pull-right" href="./bulkInsert.php">Import CSV</a>
         <!-- </form> -->

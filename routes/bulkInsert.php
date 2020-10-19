@@ -24,10 +24,16 @@
                     $gender = $data[2];
                     $country = $data[3];
                     $dob = $data[4];
-                    $Inserted += 1;
-                    $mysqli->query("INSERT INTO users (first_name, last_name, gender, country, dob)
-                    VALUES('$first_name','$last_name','$gender','$country','$dob')")
-                    or die($mysqli->error);
+                    if(!$first_name || !$last_name || !$gender || !$country || !$dob) {
+                        $Failed += 1;
+                    }
+                    else {
+
+                        $mysqli->query("INSERT INTO users (first_name, last_name, gender, country, dob)
+                        VALUES('$first_name','$last_name','$gender','$country','$dob')")
+                        or die($mysqli->error);
+                        $Inserted += 1;
+                    }
                 }
 
                 $_SESSION['message'] = "inserted: ".$Inserted."  Failed: ".$Failed;
