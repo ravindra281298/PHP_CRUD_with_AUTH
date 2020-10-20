@@ -18,20 +18,21 @@ Log out </br>
 2. Open browser and goto localhost/phpmyadmin</br>
    and create 1 databse named assignment. Now create two tables inside this database.</br>
    <b>Table 1:</b></br>
-   table name: admin</br>
-   No of coulmns: 3</br>
-   column1:- name: id,    type: int(11), AUTO_INCREMENT</br>
-   column2:- name: email, type: varchar(25),</br>
-   column3:- name: password, type: varchar(25)</br>
+   CREATE TABLE admin (</br>
+   id int AUTO_INCREMENT,</br>
+   email varchar(25),</br>
+   password varchar(25)</br>
+   );</br>
+   
    <b>Table 2:</b></br>
-   table name: users</br>
-   No of coulmns: 2</br>
-   column1:- name: id, type: int(11), AUTO_INCREMENT</br>
-   column2:- name: first_name, type: varchar(25),</br>
-   column3:- name: last_name, type: varchar(25)</br>
-   column4:- name: gender, type: varchar(25)</br>
-   column5:- name: country, type: varchar(25)</br>
-   column6:- name: dob, type: date</br>
+   CREATE TABLE users ( </br>
+   id int AUTO_INCREMENT, </br>
+   first_name varchar(25),</br>
+   last_name varchar(25),</br>
+   gender varchar(25),</br>
+   country varchar(25),</br>
+   dob date</br>
+   );</br>
 
 <h3>Running the project </h3>
 The easiest way to run the project is:</br>
