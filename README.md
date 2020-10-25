@@ -21,7 +21,7 @@ Log out </br>
    CREATE TABLE admin (</br>
    id int AUTO_INCREMENT PRIMARY KEY,</br>
    email varchar(25),</br>
-   password varchar(25)</br>
+   password varchar(70)</br>
    );</br>
    
    <b>Table 2:</b></br>
