@@ -13,10 +13,12 @@
         }
         else {
             try {
-                $sql = $conn->prepare("SELECT * FROM admin WHERE email = '".$email."' AND password = '".$password."' ");
+
+                $sql = $conn->prepare("SELECT * FROM admin WHERE email = '".$email."' ");
                 $sql->execute();
                 $result = $sql->fetchAll();
-                if(count($result) == 1) {
+
+                if(count($result) == 1 && password_verify($password, $result[0]['password'])) {
                     $_SESSION['email'] = $result[0]['email'];
                     header("location: ../views/index.php");
                 }

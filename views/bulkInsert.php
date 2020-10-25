@@ -14,7 +14,12 @@
         <?php
             require_once '../routes/bulkInsert.php';
         ?>
-
+        <?php
+            if(!isset($_SESSION['email'])) {
+                header("location: ../index.php ");
+                exit;
+            }
+        ?>
         <div class="container center">
             <form class="form-group" action="" method="post" enctype="multipart/form-data">
                 <label class="form-control">Upload CSV</label>
@@ -22,6 +27,7 @@
                 <!-- <button class=" form-control btn btn-success" name="bulk_insert" type="submit">Submit</button> -->
                 <input type="submit" class=" form-control btn btn-primary" name="bulk_insert" value="IMPORT">
             </form>
+            <a href="./index.php">Back</a>
         </div>
     </body>
 </html>

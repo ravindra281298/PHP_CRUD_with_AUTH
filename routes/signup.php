@@ -17,6 +17,7 @@
             }
 
             if(count($result) == 0) {
+                $password  = password_hash($password,PASSWORD_BCRYPT);
                 $sql = "INSERT INTO admin (email, password) VALUES ('$email', '$password')";
                 $conn->exec($sql);
                 header("location: ../index.php?msg= Your have successfully registered");

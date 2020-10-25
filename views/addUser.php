@@ -12,31 +12,41 @@
     </head>
     <body>
         <?php require_once '../routes/src.php' ?>
+        <?php
+            if(!isset($_SESSION['email'])) {
+                header("location: ../index.php ");
+                exit;
+            }
+        ?>
         <div class="container">
 
         <h1 class="mb-5 mt-3">Add Person</h1><hr>
         <form class="form-group" action="../routes/src.php" method="post">
-            <input type="hidden" name="id", value = <?php if(isset($_SESSION['id'])) { echo $_SESSION['id']; unset($_SESSION['id']); } ?>>
+            <input type="hidden" name="id", value = <?php if(isset($_SESSION['id'])) { echo $_SESSION['id']; unset($_SESSION['id']); } ?> required/>
             <label><b>First Name</b></label>
-            <input class="form-control" type="text" name="first_name" value = "<?php if(isset($_SESSION['first_name'])) { echo $_SESSION['first_name']; unset($_SESSION['first_name']); } ?>" placeholder="Enter your First Name">
+            <input class="form-control" type="text" name="first_name" value = "<?php if(isset($_SESSION['first_name'])) { echo $_SESSION['first_name']; unset($_SESSION['first_name']); } ?>" placeholder="Enter First Name" required />
             <label><b>Last Name</b></label>
-            <input class="form-control" type="text" name="last_name" value = "<?php if(isset($_SESSION['last_name'])) { echo $_SESSION['last_name']; unset($_SESSION['last_name']); } ?>" placeholder="Enter your Last Name">
+            <input class="form-control" type="text" name="last_name" value = "<?php if(isset($_SESSION['last_name'])) { echo $_SESSION['last_name']; unset($_SESSION['last_name']); } ?>" placeholder="Enter Last Name" required/>
             <label><b>Gender</b></label>
-            <select class="form-control" name="gender" value = "<?php if(isset($_SESSION['gender'])) { echo $_SESSION['gender']; unset($_SESSION['gender']); } ?>" placeholder="Select your Gender">
+            <div class="dropdown">
+            <select class="form-control" name="gender" value = "<?php if(isset($_SESSION['gender'])) { echo $_SESSION['gender']; unset($_SESSION['gender']); } ?>" placeholder="Select Gender" required />
+            <option disabled selected value> Select Gender </option>
             <option name="male">Male</option>
             <option name="female">Female</option>
             <option name="other">Other</option>
             </select>
+            </div>
             <label><b>Country</b></label>
-            <input class="form-control" type="text" name="country" value = "<?php if(isset($_SESSION['country'])) { echo $_SESSION['country']; unset($_SESSION['country']); } ?>" placeholder="Enter your Country">
+            <input class="form-control" type="text" name="country" value = "<?php if(isset($_SESSION['country'])) { echo $_SESSION['country']; unset($_SESSION['country']); } ?>" placeholder="Enter Country" required />
             <label><b>Date of Birth</b></label>
-            <input class="form-control mb-3" type="date" name="dob" value = "<?php if(isset($_SESSION['dob'])) { echo $_SESSION['dob']; unset($_SESSION['dob']); } ?>"><br>
+            <input class="form-control mb-3" type="date" name="dob" value = "<?php if(isset($_SESSION['dob'])) { echo $_SESSION['dob']; unset($_SESSION['dob']); } ?>" required/><br>
             <?php if(isset($_SESSION['update'])): unset($_SESSION['update']); ?>
                 <button class="btn btn-info" type="submit" name="update">Update</button>
             <?php else: ?>
                 <button class="btn btn-info" type="submit" name="save">Save</button>
             <?php endif ?>
         </form>
+        <a href="./index.php">Back</a>
         </div>
     </body>
 </html>

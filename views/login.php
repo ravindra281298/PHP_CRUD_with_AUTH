@@ -36,6 +36,7 @@
                 <input class="form-control mb-3" type="password" name="password" required />
                 <button class="btn btn-info" type="submit" name="login">Login</button>
             </form>
+            <a href="./signup.php">Sign up</a>
         </div>
     </body>
 </html>
