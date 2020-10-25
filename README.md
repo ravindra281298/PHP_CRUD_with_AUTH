@@ -29,8 +29,8 @@ Log out </br>
    id int AUTO_INCREMENT PRIMARY KEY, </br>
    first_name varchar(25),</br>
    last_name varchar(25),</br>
-   gender varchar(25),</br>
-   country varchar(25),</br>
+   gender varchar(8),</br>
+   country varchar(12),</br>
    dob date</br>
    );</br>
 
