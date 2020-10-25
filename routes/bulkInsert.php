@@ -29,9 +29,9 @@
                     }
                     else {
 
-                        $mysqli->query("INSERT INTO users (first_name, last_name, gender, country, dob)
-                        VALUES('$first_name','$last_name','$gender','$country','$dob')")
-                        or die($mysqli->error);
+                        $sql = "INSERT INTO users (first_name, last_name, gender, country, dob)
+                                VALUES('$first_name','$last_name','$gender','$country','$dob')";
+                        $conn->exec($sql);
                         $Inserted += 1;
                     }
                 }

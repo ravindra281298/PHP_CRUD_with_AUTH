@@ -3,12 +3,15 @@
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
     $start = ($page - 1) * $limit;
     //Getting users in limit
-    $users = $mysqli->query("SELECT * from users LIMIT $start, $limit") or die($mysqli->error);
-    // $user = $users->fetch_all(MYSQLI_ASSOC);
+    $sql = $conn->prepare("SELECT * from users LIMIT $start, $limit");
+    $sql->execute();
+    $user = $sql->fetchAll();
+
 
     //Getting total No. of pages.
-    $result = $mysqli->query("SELECT count(id) AS id FROM users");
-    $userCount = $result->fetch_all(MYSQLI_ASSOC);
+    $result = $conn->prepare("SELECT count(id) AS id FROM users");
+    $result->execute();
+    $userCount = $result->fetchAll();
     $total = $userCount[0]['id'];
     $pages = ceil( $total / $limit);
 
@@ -61,7 +64,7 @@
             <th>Action</th>
         </thead>
         <?php
-            while($row = $users->fetch_assoc()): ?>
+            foreach($user as $row): ?>
             <tr>
                 <td><input type="checkbox" name='delete[]' value='<?= $row['id']?>'></td>
                 <td><?php echo $row['first_name']; ?></td>
@@ -76,6 +79,6 @@
                     class="btn btn-danger" >Delete</a>
                 </td>
             </tr>
-            <?php endwhile; ?>
+            <?php endforeach;?>
     </table>
 </div>

@@ -25,9 +25,9 @@
                 <label>Email</label>
                 <input class="form-control" type="email" name="email" required />
                 <label>Password</label>
-                <input class="form-control" type="password" name="password" required />
+                <input class="form-control" type="password" name="password1" required />
                 <label>Confirm Password</label>
-                <input class="form-control mb-3" type="password" name="password-confirm" required />
+                <input class="form-control mb-3" type="password" name="password2" required />
                 <button class="btn btn-info" type="submit" name="register">Sign Up</button>
             </form>
         </div>

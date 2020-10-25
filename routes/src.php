@@ -14,10 +14,9 @@
         $country = $_POST['country'];
         $dob = $_POST['dob'];
 
-        $mysqli->query("INSERT INTO users (first_name, last_name, gender, country, dob)
-                        VALUES('$first_name','$last_name','$gender','$country','$dob')")
-                        or die($mysqli->error);
-
+        $sql = "INSERT INTO users (first_name, last_name, gender, country, dob)
+               VALUES('$first_name','$last_name','$gender','$country','$dob')";
+        $conn->exec($sql);
         $_SESSION['message'] = 'Record has been saved';
         $_SESSION['msg_type'] = "success";
 
@@ -28,7 +27,8 @@
 
         $id = $_GET['delete'];
 
-        $mysqli->query("DELETE FROM users where id = $id") or die($mysqli->error);
+        $sql = "DELETE FROM users where id = $id";
+        $conn->exec($sql);
 
         $_SESSION['message'] = 'Record has been deleted';
         $_SESSION['msg_type'] = 'danger';
@@ -39,10 +39,11 @@
     if(isset($_GET['edit'])) {
         $id = $_GET['edit'];
 
-        $result = $mysqli->query("SELECT * FROM users where id = $id") or die($mysqli->error);
+        $sql = $conn->prepare("SELECT * FROM users where id = $id");
+        $sql->execute();
+        $result = $sql->fetchAll();
 
-        // if($row = $result->fetch_assoc()) {
-            $row = $result->fetch_assoc();
+            $row = $result[0];
             $_SESSION['first_name'] = $row['first_name'];
             $_SESSION['last_name'] = $row['last_name'];
             $_SESSION['gender'] = $row['gender'];
@@ -50,8 +51,6 @@
             $_SESSION['dob'] = $row['dob'];
             $_SESSION['update'] = true;
             $_SESSION['id'] = $id;
-
-        // }
 
         header("location: $addUser_url");
     }
@@ -65,9 +64,10 @@
         $dob = $_POST['dob'];
         $id = $_POST['id'];
 
-        $mysqli->query("UPDATE users SET first_name='$first_name', last_name='$last_name', 
-                        gender='$gender', country='$country', dob='$dob' WHERE id='$id' ")
-                        or die($mysqli->error);
+
+        $sql = $conn->prepare("UPDATE users SET first_name='$first_name', last_name='$last_name', 
+                            gender='$gender', country='$country', dob='$dob' WHERE id='$id' ");
+        $sql->execute();
 
         $_SESSION['message'] = 'Record has been update.';
         $_SESSION['msg_type'] = 'warning';

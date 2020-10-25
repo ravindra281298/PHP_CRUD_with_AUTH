@@ -7,13 +7,17 @@
 
         if(isset($_POST['delete'])){
           foreach($_POST['delete'] as $id){
-            $mysqli->query("DELETE FROM users where id = $id") or die($mysqli->error);
+            try {
+              $sql = "DELETE FROM users where id = $id";
+              $conn->exec($sql);
+              $_SESSION['message'] = 'Bulk Record has been deleted';
+              $_SESSION['msg_type'] = 'danger';
+            }
+            catch(PDOException $e) {
+              echo $sql."<br>".$e->getMessage();
+            }
           }
         }
-
-        $_SESSION['message'] = 'Bulk Record has been deleted';
-        $_SESSION['msg_type'] = 'danger';
-
         header("Refresh:2; location: ../views/index.php ");
       }
 

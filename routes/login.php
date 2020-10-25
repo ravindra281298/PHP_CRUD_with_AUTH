@@ -12,13 +12,20 @@
             header("location: login.php?warning= Please fill in the blanks");
         }
         else {
-            $result = $mysqli->query("SELECT * FROM admin WHERE email = '".$email."' AND password = '".$password."' ") or die($mysqli->error);
-            if($result->num_rows != 0) {
-                $_SESSION['email'] = $email;
-                header("location: ../views/index.php");
+            try {
+                $sql = $conn->prepare("SELECT * FROM admin WHERE email = '".$email."' AND password = '".$password."' ");
+                $sql->execute();
+                $result = $sql->fetchAll();
+                if(count($result) == 1) {
+                    $_SESSION['email'] = $result[0]['email'];
+                    header("location: ../views/index.php");
+                }
+                else {
+                    header("location: login.php?danger= Invalid credentials");
+                }
             }
-            else {
-                header("location: login.php?danger= Invalid credentials");
+            catch(PDOException $e) {
+                echo "Error: ".$e->getMessage();
             }
         }
     }
