@@ -19,14 +19,14 @@ Log out </br>
    and create 1 databse named assignment. Now create two tables inside this database.</br>
    <b>Table 1:</b></br>
    CREATE TABLE admin (</br>
-   id int AUTO_INCREMENT,</br>
+   id int AUTO_INCREMENT PRIMARY KEY,</br>
    email varchar(25),</br>
    password varchar(25)</br>
    );</br>
    
    <b>Table 2:</b></br>
    CREATE TABLE users ( </br>
-   id int AUTO_INCREMENT, </br>
+   id int AUTO_INCREMENT PRIMARY KEY, </br>
    first_name varchar(25),</br>
    last_name varchar(25),</br>
    gender varchar(25),</br>
