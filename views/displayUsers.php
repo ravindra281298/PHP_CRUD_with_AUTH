@@ -1,4 +1,5 @@
 <?php
+    $_SESSION['limit'] = isset($_SESSION['limit']) ? $_SESSION['limit'] : 10;
     $_SESSION['limit'] = isset($_POST['limit']) ? $_POST['limit'] : $_SESSION['limit'];
     $limit = isset($_SESSION['limit']) ? $_SESSION['limit'] : 10;
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
@@ -67,7 +68,7 @@
     </div>
     <table class="table ">
         <thead>
-            <th></th>
+            <th><input style="outline: 0.5px solid"type="checkbox" id="select_all" value=""/></th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Gender</th>
@@ -78,7 +79,7 @@
         <?php
             foreach($user as $row): ?>
             <tr>
-                <td><input type="checkbox" name='delete[]' value='<?= $row['id']?>'></td>
+                <td><input type="checkbox" name='delete[]' class="checkbox" value='<?php echo $row['id']; ?>' /></td>
                 <td><?php echo $row['first_name']; ?></td>
                 <td><?php echo $row['last_name']; ?></td>
                 <td><?php echo $row['gender']; ?></td>

@@ -46,21 +46,42 @@
             <a class="btn btn-success" href="./addUser.php">+ Add Person</a>
             <!-- <button class="btn btn-info " onClick="window.location.reload();">&#x21bb;  Reload</button> -->
             <a class="btn btn-info" href="./index.php">&#x21bb;  Reload</a>
-            <button class="btn btn-danger" type="submit" value="delete" name="bulk_delete">Bulk Delete</button>
+            <input class="btn btn-danger" type="submit" value="Bulk Delete" name="bulk_delete" />
             <a class="btn btn-warning pull-right" href="./bulkInsert.php">Import CSV</a>
-        <!-- </form> -->
         </div>
         <div class="container">
             <?php if(isset($_SESSION['email'])) require_once './displayUsers.php'; ?>
         </div>
-        </form>
+        <!-- </form> -->
         <script type="text/javascript">
             $(document).ready(function(){
                 $('#limit').change(function(){
                     $('form').submit();
-                    // $_SESSION['limit'] = this.value;
-                })
-            })
+                });
+            });
+
+            $(document).ready(function(){
+                $('#select_all').on('click',function(){
+                if(this.checked){
+                    $('.checkbox').each(function(){
+                        this.checked = true;
+                    });
+                }else{
+                    $('.checkbox').each(function(){
+                        this.checked = false;
+                    });
+                }
+                });
+
+                $('.checkbox').on('click',function(){
+                    if($('.checkbox:checked').length == $('.checkbox').length){
+                        $('#select_all').prop('checked',true);
+                    }else{
+                        $('#select_all').prop('checked',false);
+                    }
+                });
+             });
         </script>
+        </form>
     </body>
 </html>
