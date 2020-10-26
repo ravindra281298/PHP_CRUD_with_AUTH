@@ -54,5 +54,13 @@
             <?php if(isset($_SESSION['email'])) require_once './displayUsers.php'; ?>
         </div>
         </form>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('#limit').change(function(){
+                    $('form').submit();
+                    // $_SESSION['limit'] = this.value;
+                })
+            })
+        </script>
     </body>
 </html>

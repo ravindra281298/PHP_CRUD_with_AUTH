@@ -1,7 +1,9 @@
 <?php
-    $limit = 10;
+    $_SESSION['limit'] = isset($_POST['limit']) ? $_POST['limit'] : $_SESSION['limit'];
+    $limit = isset($_SESSION['limit']) ? $_SESSION['limit'] : 10;
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
     $start = ($page - 1) * $limit;
+
     //Getting users in limit
     $sql = $conn->prepare("SELECT * from users LIMIT $start, $limit");
     $sql->execute();
@@ -51,6 +53,16 @@
                 </li>
                 </ul>
             </nav>
+        </div>
+        <div class="text-center" style="margin-top: 20px" class="col-md-2">
+            <form class="" method="post" action="#">
+                        <select name="limit" id="limit">
+                        <option disabled="disabled" selected="selected">Limit Record</option>
+                        <?php foreach([10,25,100,500] as $limit): ?>
+                        <option <?php if( isset($_SESSION['limit']) && $_SESSION['limit'] == $limit ) echo "selected" ?> values="<?= $limit; ?>"><?= $limit; ?></option>
+                        <?php endforeach; ?>
+                        </select>
+            </form>
         </div>
     </div>
     <table class="table ">
