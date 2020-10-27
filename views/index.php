@@ -46,15 +46,15 @@
         <form  class="form-group" action="" method="post">
             <div class="row-md-3 col-md-9">
             <a class="btn btn-success" href="./addUser.php">+ Add Person</a>
-            <a class="btn btn-info" href="./index.php">&#x21bb;  Reload</a>
+            <input class="btn btn-info" type="submit" value="&#x21bb;  Reload" name="reload" />
             <input class="btn btn-danger" type="submit" value="Bulk Delete" name="bulk_delete" />
             <a class="btn btn-warning" href="./bulkInsert.php">Import CSV</a>
             </div>
-            
+
             <div class="row">
                 <div class="col-xs-6 col-md-3">
                 <div class="input-group ">
-                    <input type="text" class="form-control" placeholder="Search" name="textSearch" />
+                    <input type="text" class="form-control" placeholder="Search"  value = "<?php if(isset($_SESSION['search'])){echo $_SESSION['search'];}?>" name="textSearch" />
                     <div class="input-group-btn">
                     <button class="btn btn-primary" type="submit" name="search">
                         <span class="glyphicon glyphicon-search"></span>

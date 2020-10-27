@@ -6,15 +6,39 @@
     $start = ($page - 1) * $limit;
 
     //Getting users in limit
-    $sql = $conn->prepare("SELECT * from users LIMIT $start, $limit");
-    $sql->execute();
-    $user = $sql->fetchAll();
+    $user = null;
+    $userCount = null;
+    $total = null;
 
+    if(isset($_SESSION['search']) && strlen($_SESSION['search'])>0 ) {
+        $text = $_SESSION['search'];
+        $sql = $conn->prepare("SELECT * FROM users WHERE first_name LIKE '%$text%' OR last_name LIKE '%$text%' OR
+                                  gender LIKE '%$text%' OR country LIKE '%$text%' LIMIT $start, $limit");
+        $sql->execute();
+        $user = $sql->fetchAll();
 
-    //Getting total No. of pages.
-    $result = $conn->prepare("SELECT count(id) AS id FROM users");
-    $result->execute();
-    $userCount = $result->fetchAll();
+        //Getting total No. of pages.
+        $result = $conn->prepare("SELECT count(id) AS id  FROM users WHERE first_name LIKE '%$text%' OR last_name LIKE '%$text%' OR
+                                gender LIKE '%$text%' OR country LIKE '%$text%' ");
+        $result->execute();
+        $userCount = $result->fetchAll();
+    }
+    else {
+
+        if(isset($_SESSION['search'])){
+            unset($_SESSION['search']);
+        }
+
+        $sql = $conn->prepare("SELECT * from users LIMIT $start, $limit");
+        $sql->execute();
+        $user = $sql->fetchAll();
+
+        //Getting total No. of pages.
+        $result = $conn->prepare("SELECT count(id) AS id FROM users");
+        $result->execute();
+        $userCount = $result->fetchAll();
+    }
+
     $total = $userCount[0]['id'];
     $pages = ceil( $total / $limit);
 
@@ -76,7 +100,11 @@
             <th>Date of Birth</th>
             <th>Action</th>
         </thead>
-        <?php
+        <?php if(count($user) < 1): ?>
+                <tr>
+                <td>No data here</td>
+                </tr>
+        <?php else:
             foreach($user as $row): ?>
             <tr>
                 <td><input type="checkbox" name='delete[]' class="checkbox" value='<?php echo $row['id']; ?>' /></td>
@@ -92,6 +120,6 @@
                     class="btn btn-danger" >Delete</a>
                 </td>
             </tr>
-            <?php endforeach;?>
+            <?php endforeach; endif; ?>
     </table>
 </div>

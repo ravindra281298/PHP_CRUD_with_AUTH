@@ -75,4 +75,12 @@
         header("location: $index_url ");
     }
 
+    if(isset($_POST['reload'])){
+
+        if(isset($_SESSION['search'])) {
+            unset($_SESSION['search']);
+        }
+        header("Refresh:0; url:$index_url");
+    }
+
 ?>
