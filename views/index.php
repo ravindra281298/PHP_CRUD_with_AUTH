@@ -15,6 +15,7 @@
             require_once '../routes/src.php';
             require_once '../db/users.php';
             require_once '../routes/bulkDelete.php';
+            require_once '../routes/search.php';
         ?>
         <?php
             if(!isset($_SESSION['email'])) {
@@ -41,13 +42,28 @@
             </div>
         </nav>
 
-        <div class="container center ">
+        <div class="container center">
         <form  class="form-group" action="" method="post">
+            <div class="row-md-3 col-md-9">
             <a class="btn btn-success" href="./addUser.php">+ Add Person</a>
-            <!-- <button class="btn btn-info " onClick="window.location.reload();">&#x21bb;  Reload</button> -->
             <a class="btn btn-info" href="./index.php">&#x21bb;  Reload</a>
             <input class="btn btn-danger" type="submit" value="Bulk Delete" name="bulk_delete" />
-            <a class="btn btn-warning pull-right" href="./bulkInsert.php">Import CSV</a>
+            <a class="btn btn-warning" href="./bulkInsert.php">Import CSV</a>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-6 col-md-3">
+                <div class="input-group ">
+                    <input type="text" class="form-control" placeholder="Search" name="textSearch" />
+                    <div class="input-group-btn">
+                    <button class="btn btn-primary" type="submit" name="search">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            
         </div>
         <div class="container">
             <?php if(isset($_SESSION['email'])) require_once './displayUsers.php'; ?>
