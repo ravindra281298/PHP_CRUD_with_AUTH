@@ -9,6 +9,12 @@
         <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <!-- DataTables CSS -->
+        <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+        <!-- jQuery -->
+        <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+        <!-- DataTables -->
+        <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
     </head>
     <body>
         <?php
@@ -46,12 +52,12 @@
         <form  class="form-group" action="" method="post">
             <div class="row-md-3 col-md-9">
             <a class="btn btn-success" href="./addUser.php">+ Add Person</a>
-            <input class="btn btn-info" type="submit" value="&#x21bb;  Reload" name="reload" />
+            <a class="btn btn-info" href="./index.php"  name="reload" >&#x21bb; Reload</a>
             <input class="btn btn-danger" type="submit" value="Bulk Delete" name="bulk_delete" />
             <a class="btn btn-warning" href="./bulkInsert.php">Import CSV</a>
             </div>
 
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-xs-6 col-md-3">
                 <div class="input-group ">
                     <input type="text" class="form-control" placeholder="Search"  value = "<?php if(isset($_SESSION['search'])){echo $_SESSION['search'];}?>" name="textSearch" />
@@ -62,14 +68,18 @@
                     </div>
                 </div>
                 </div>
-            </div>
+            </div> -->
             
         </div>
         <div class="container">
-            <?php if(isset($_SESSION['email'])) require_once './displayUsers.php'; ?>
+            <?php if(isset($_SESSION['email'])) require_once './dataTable.php'; ?>
         </div>
         <!-- </form> -->
         <script type="text/javascript">
+            $(document).ready(function(){
+                $('#table').DataTable();
+            });
+            
             $(document).ready(function(){
                 $('#limit').change(function(){
                     $('form').submit();
